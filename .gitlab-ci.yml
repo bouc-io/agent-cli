@@ -1,0 +1,27 @@
+include:
+  - template: SAST.gitlab-ci.yml
+  - template: Secret-Detection.gitlab-ci.yml
+  - template: Dependency-Scanning.gitlab-ci.yml
+  # Shared lint + unit-test jobs. Private project: the identity running the pipeline
+  # needs at least Reporter on bouc-io/ci-templates or the include fails to resolve.
+  - project: 'bouc-io/ci-templates'
+    ref: main
+    file: '/node.yml'
+    inputs:
+      # Ratchet ceiling: current count is 3 (3 no-unused-vars).
+      # Lower this as they are cleaned up; errors fail regardless.
+      max_warnings: "3"
+      build_before_test: true
+      check_format: true
+
+# No docker-build stage: agent-cli ships as source/npm, not as a container image.
+stages:
+  - test
+
+# ── Quality gates. Job definitions live in the private bouc-io/ci-templates project
+# so a pipeline change is one commit instead of forty; see its README for the inputs.
+lint:
+  extends: .node-lint
+
+unit-test:
+  extends: .node-unit-test
