@@ -1,0 +1,61 @@
+{
+  "name": "@bouc.io/agent-cli",
+  "version": "1.0.0",
+  "description": "Terminal-based CLI client for the bouc.io AI assistant platform",
+  "type": "module",
+  "bin": {
+    "agent-cli": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.tsx",
+    "start": "node dist/index.js",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx}\"",
+    "test": "vitest run --passWithNoTests",
+    "test:ci": "vitest run --coverage --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.5",
+    "eventsource": "^3.0.2",
+    "fast-glob": "^3.3.3",
+    "ink": "^4.4.1",
+    "ink-spinner": "^5.0.0",
+    "marked": "^12.0.0",
+    "marked-terminal": "^7.1.0",
+    "open": "^10.1.0",
+    "react": "^18.3.1",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.3",
+    "@vitest/coverage-v8": "^4.1.10",
+    "eslint": "^10.8.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.11.0",
+    "ink-testing-library": "^4.0.0",
+    "prettier": "^3.3.2",
+    "tsx": "^4.23.0",
+    "typescript": "^5.5.2",
+    "typescript-eslint": "^8.67.0",
+    "vitest": "^4.1.10"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "license": "Elastic-2.0",
+  "keywords": [
+    "cli",
+    "ai-agent",
+    "llm",
+    "terminal"
+  ]
+}
